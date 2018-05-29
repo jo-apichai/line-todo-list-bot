@@ -1,0 +1,6 @@
+.git*
+log/*
+tmp/*
+config/master.key
+Dockerfile
+README.md
