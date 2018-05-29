@@ -1,24 +1,27 @@
-# README
+# LINE Todo List Bot
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+LINE Bot backend for managing todo list
 
-Things you may want to cover:
+## Getting Started
 
-* Ruby version
+These instructions will setup an environment for development and testing on your local machine.
 
-* System dependencies
+### Prerequisites
 
-* Configuration
+Install [Docker](https://docs.docker.com/install/) and [Docker Compose](https://docs.docker.com/compose/install/) on your machine.
 
-* Database creation
+### Installing
 
-* Database initialization
+- Clone this repo to your local machine
+- Create docker images and start containers
+```
+# Create docker images
+docker-compose build
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Start docker containers
+docker-compose up
+```
+- Run rake task to create database
+```
+docker-compose run app rake db:create
+```
