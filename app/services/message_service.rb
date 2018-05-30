@@ -15,8 +15,6 @@ class MessageService
 
     raise ArgumentError if description.blank? || date.blank?
 
-    puts @event.to_s
-
     task = Task.new(
       user_id: @event['source']['userId'],
       description: description,
