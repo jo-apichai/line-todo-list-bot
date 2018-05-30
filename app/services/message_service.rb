@@ -29,7 +29,8 @@ class MessageService
   end
 
   private def send_edit_link
-    send_reply_message 'Edit Link'
+    url = Rails.application.routes.url_helpers.root_url
+    send_reply_message "To edit your todo list please visit #{url}"
   end
 
   private def parse_datetime(date, time)
