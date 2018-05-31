@@ -13,15 +13,20 @@ Install [Docker](https://docs.docker.com/install/) and [Docker Compose](https://
 ### Installing
 
 - Clone this repo to your local machine
+- Get master key and put it in `config/master.key`
 - Create docker images and start containers
-```
+```bash
 # Create docker images
 docker-compose build
 
 # Start docker containers
 docker-compose up
 ```
-- Run rake task to create database
-```
-docker-compose run app rake db:create
+- Run rake task to create database and migrate schema
+```bash
+# Create database
+docker-compose run app bundle exec rake db:create
+
+# Migrate schema
+docker-compose run app bundle exec rake db:migrate
 ```

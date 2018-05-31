@@ -36,6 +36,12 @@ gem 'jbuilder', '~> 2.5'
 # SDK of the LINE Messaging API
 gem 'line-bot-api'
 
+# Simple HTTP and REST client
+gem 'rest-client'
+
+# JSON Web Token
+gem 'jwt'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 

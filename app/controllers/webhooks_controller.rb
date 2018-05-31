@@ -1,5 +1,6 @@
 class WebhooksController < ApplicationController
   skip_before_action :verify_authenticity_token
+  skip_before_action :authenticate_user
   before_action :validate_signature
 
   def create
@@ -20,8 +21,8 @@ class WebhooksController < ApplicationController
       credentials = Rails.application.credentials
 
       Line::Bot::Client.new { |config|
-        config.channel_secret = credentials.line[:channel_secret]
-        config.channel_token = credentials.line[:channel_token]
+        config.channel_secret = credentials.line_bot[:channel_secret]
+        config.channel_token = credentials.line_bot[:channel_token]
       }
     end
   end
