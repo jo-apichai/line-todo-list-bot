@@ -5,4 +5,7 @@ class Task < ApplicationRecord
   validates :datetime, presence: true
   validates :finished, exclusion: { in: [nil] }
   validates :important, exclusion: { in: [nil] }
+
+  # Scopes
+  default_scope { order(datetime: :asc) }
 end
