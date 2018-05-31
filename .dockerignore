@@ -1,6 +1,7 @@
 .git*
 log/*
 tmp/*
+node_modules/*
 config/master.key
 Dockerfile
 README.md

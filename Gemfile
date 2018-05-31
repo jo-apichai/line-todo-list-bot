@@ -33,6 +33,9 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Webpacker
+gem 'webpacker', '~> 3.5'
+
 # SDK of the LINE Messaging API
 gem 'line-bot-api'
 
