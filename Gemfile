@@ -51,6 +51,9 @@ gem 'active_model_serializers', '~> 0.10.6'
 # Bootstrap
 gem 'bootstrap', '~> 4.1.1'
 
+# Font Awesome
+gem 'font-awesome-sass', '~> 5.0.13'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 

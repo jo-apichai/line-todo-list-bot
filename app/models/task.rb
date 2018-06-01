@@ -7,5 +7,5 @@ class Task < ApplicationRecord
   validates :important, exclusion: { in: [nil] }
 
   # Scopes
-  default_scope { order(datetime: :asc) }
+  default_scope { order(important: :desc, datetime: :asc) }
 end

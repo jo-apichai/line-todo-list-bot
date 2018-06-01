@@ -1,4 +1,6 @@
 @import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
 body {
   padding-top: 30px;
@@ -14,7 +16,16 @@ body {
     margin-right: 1rem;
   }
 
+  .fa-star {
+    color: #aaa;
+    margin-right: 1rem;
+
+    &.active {
+      color: #f33;
+    }
+  }
+
   .finished {
-    background-color: #aaa;
+    background-color: #ddd;
   }
 }
