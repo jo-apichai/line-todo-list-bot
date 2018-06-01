@@ -23,7 +23,7 @@ RSpec.describe Api::V1::TasksController, type: :request do
 
     before do
       authenticate_user(user)
-      get '/api/v1/tasks', headers: { HTTP_ACCEPT: 'application/json ' }
+      get '/api/v1/tasks'
     end
 
     it { expect(response).to have_http_status(:ok) }
@@ -38,6 +38,44 @@ RSpec.describe Api::V1::TasksController, type: :request do
       expect(json[0]['id']).to eq task3.id
       expect(json[1]['id']).to eq task2.id
       expect(json[2]['id']).to eq task1.id
+    end
+  end
+
+  describe '#update' do
+    let(:task) do
+      create(
+        :task,
+        user_id: user[:id],
+        finished: false,
+        important: false
+      )
+    end
+
+    let(:task_params) do
+      {
+        task: {
+          finished: true,
+          important: true
+        }
+      }
+    end
+
+    before do
+      authenticate_user(user)
+      patch "/api/v1/tasks/#{task.id}", params: task_params
+    end
+
+    it { expect(response).to have_http_status(:ok) }
+
+    it 'returns task object' do
+      expect(response).to match_response_schema('task')
+    end
+
+    it 'returns updated task' do
+      json = JSON.parse(response.body)
+
+      expect(json['finished']).to be_truthy
+      expect(json['important']).to be_truthy
     end
   end
 end
