@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     <div class="list-group">
-      <draggable v-model="tasks">
+      <draggable v-model="tasks" :move="checkMove">
         <div v-for="(task, index) in tasks" :key="task.id"
           class="list-group-item"
-          v-bind:class="{ finished: task.finished }">
+          v-bind:class="{ finished: task.finished, important: task.important }">
 
           <i class="fas fa-star" v-bind:class="{ active: task.important }"
             v-on:click="toggleImportant($event, task.id, index)"></i>
@@ -71,8 +71,16 @@
           this.tasks.splice(index, 1)
           this.tasks.unshift(data)
         } else {
-          this.$set(this.tasks, index, data)
+          this.tasks.splice(index, 1)
+          this.tasks.push(data)
         }
+      },
+
+      checkMove: function (event) {
+        return !(
+          event.related.classList.contains('important') ||
+          event.dragged.classList.contains('important')
+        )
       }
     }
   }
