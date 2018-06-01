@@ -1,27 +1,34 @@
 <template>
   <div id="app">
-    <ul class="list-group">
-      <li v-for="(task, index) in tasks" :key="task.id"
-        class="list-group-item"
-        v-bind:class="{ finished: task.finished }">
+    <div class="list-group">
+      <draggable v-model="tasks">
+        <div v-for="(task, index) in tasks" :key="task.id"
+          class="list-group-item"
+          v-bind:class="{ finished: task.finished }">
 
-        <i class="fas fa-star" v-bind:class="{ active: task.important }"
-          v-on:click="toggleImportant($event, task.id, index)"></i>
+          <i class="fas fa-star" v-bind:class="{ active: task.important }"
+            v-on:click="toggleImportant($event, task.id, index)"></i>
 
-        <input type="checkbox" name="finished"
-          v-model="task.finished"
-          v-on:click="toggleFinished($event, task.id, index)">
+          <input type="checkbox" name="finished"
+            v-model="task.finished"
+            v-on:click="toggleFinished($event, task.id, index)">
 
-        {{ task.datetime }} - {{ task.description }}
-      </li>
-    </ul>
+          {{ task.datetime }} - {{ task.description }}
+        </div>
+      </draggable>
+    </div>
   </div>
 </template>
 
 <script>
+  import draggable from 'vuedraggable'
   import { restRequest } from '../utilities/restRequest'
 
   export default {
+    components: {
+      draggable,
+    },
+
     data () {
       return {
         tasks: []
