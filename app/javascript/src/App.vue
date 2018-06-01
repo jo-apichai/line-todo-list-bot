@@ -1,5 +1,9 @@
 <template>
   <div id="app">
+    <div class="loading" v-if="loading">
+      <i class="fas fa-spinner fa-spin"></i>
+    </div>
+
     <div class="list-group">
       <draggable v-model="tasks" :move="checkMove">
         <div v-for="(task, index) in tasks" :key="task.id"
@@ -31,6 +35,7 @@
 
     data () {
       return {
+        loading: true,
         tasks: []
       }
     },
@@ -43,6 +48,7 @@
       loadTasks: async function () {
         const data = await restRequest('/tasks')
         this.tasks = data
+        this.loading = false
       },
 
       toggleFinished: async function (event, id, index) {
