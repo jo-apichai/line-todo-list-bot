@@ -1,8 +1,12 @@
 <template>
   <div id="app">
     <ul class="list-group">
-      <li v-for="task in tasks" :key="task.id"
-        class="list-group-item">
+      <li v-for="(task, index) in tasks" :key="task.id"
+        class="list-group-item"
+        v-bind:class="{ finished: task.finished }">
+        <input type="checkbox" name="finished"
+          v-model="task.finished"
+          v-on:click="toggleFinished($event, task.id, index)">
         {{ task.datetime }} - {{ task.description }}
       </li>
     </ul>
@@ -10,7 +14,7 @@
 </template>
 
 <script>
-  import 'whatwg-fetch'
+  import { restRequest } from '../utilities/restRequest'
 
   export default {
     data () {
@@ -24,14 +28,22 @@
     },
 
     methods: {
-      loadTasks: function () {
-        fetch('/api/v1/tasks', { credentials: 'same-origin' })
-          .then((response) => {
-            return response.json()
-          })
-          .then((json) => {
-            this.tasks = json
-          })
+      loadTasks: async function () {
+        const data = await restRequest('/tasks')
+        this.tasks = data
+      },
+
+      toggleFinished: async function (event, id, index) {
+        const task = {
+          finished: event.target.checked
+        }
+
+        const data = await restRequest(`/tasks/${id}`, {
+          method: 'PATCH',
+          body: JSON.stringify({ task })
+        })
+
+        this.$set(this.tasks, index, data)
       }
     }
   }

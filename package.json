@@ -3,6 +3,7 @@
   "private": true,
   "dependencies": {
     "@rails/webpacker": "3.5",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "vue": "^2.5.16",
     "vue-loader": "^15.2.3",
     "vue-template-compiler": "^2.5.16",
