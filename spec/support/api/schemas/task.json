@@ -1,0 +1,28 @@
+{
+  "type": "object",
+  "required": [
+    "id",
+    "description",
+    "datetime",
+    "finished",
+    "important"
+  ],
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "description": {
+      "type": "string"
+    },
+    "datetime": {
+      "type": "string"
+    },
+    "finished": {
+      "type": "boolean"
+    },
+    "important": {
+
+      "type": "boolean"
+    }
+  }
+}
