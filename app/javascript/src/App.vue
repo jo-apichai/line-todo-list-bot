@@ -1,7 +1,8 @@
 <template>
   <div id="app">
-    <ul>
-      <li v-for="task in tasks" :key="task.id">
+    <ul class="list-group">
+      <li v-for="task in tasks" :key="task.id"
+        class="list-group-item">
         {{ task.datetime }} - {{ task.description }}
       </li>
     </ul>

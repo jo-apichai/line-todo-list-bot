@@ -48,6 +48,9 @@ gem 'jwt'
 # API Serializer
 gem 'active_model_serializers', '~> 0.10.6'
 
+# Bootstrap
+gem 'bootstrap', '~> 4.1.1'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
