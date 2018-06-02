@@ -5,7 +5,7 @@ class MessageService
   end
 
   def reply
-    text = @event.message['text'].downcase
+    text = @event.message['text'].strip.downcase
 
     text.eql?('edit') ? send_edit_link : create_task
   end
@@ -35,7 +35,9 @@ class MessageService
     time ||= '12:00'
     date_format = '%-d/%-m/%y'
 
-    case date
+    date = date.strip
+
+    case date.downcase
     when 'today'
       date = Date.current.strftime(date_format)
     when 'tomorrow'
